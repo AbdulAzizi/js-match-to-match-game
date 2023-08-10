@@ -32,16 +32,7 @@ class Board {
 					if (!card.isFlipped && this.selectedPair.length < 2) {
 						card.flip();
 						this.selectedPair.push(card);
-						if (this.selectedPair.length === 2 && this.selectedPair[0].image !== this.selectedPair[1].image) {
-							setTimeout(() => {
-								this.selectedPair[0].flip();
-								this.selectedPair[1].flip();
-								this.selectedPair = [];
-							}, 400);
-						}
-						if (this.selectedPair.length === 2 && this.selectedPair[0].image === this.selectedPair[1].image) {
-							this.selectedPair = [];
-						}
+						this.checkIfCardPairsMatch();
 					}
 				});
 
@@ -62,6 +53,19 @@ class Board {
 		this.element = document.createElement('div');
 		this.element.style = `grid-template-columns: repeat(${this.dimension}, 100px); grid-template-rows: repeat(${this.dimension}, 100px)`;
 		this.element.className = 'board';
+	}
+
+	checkIfCardPairsMatch() {
+		if (this.selectedPair.length === 2 && this.selectedPair[0].image !== this.selectedPair[1].image) {
+			setTimeout(() => {
+				this.selectedPair[0].flip();
+				this.selectedPair[1].flip();
+				this.selectedPair = [];
+			}, 400);
+		}
+		if (this.selectedPair.length === 2 && this.selectedPair[0].image === this.selectedPair[1].image) {
+			this.selectedPair = [];
+		}
 	}
 }
 
