@@ -5,14 +5,17 @@ class Board {
 	dimension;
 	element;
 	selectedPair;
+	gameTheme;
 
-	constructor({ dimension }) {
+	constructor({ dimension, gameTheme }) {
 		this.dimension = dimension;
+		this.gameTheme = gameTheme;
 		this.selectedPair = [];
+		this.initilize();
 	}
 
 	async initilize() {
-		const images = await fetchImages(Math.round((this.dimension * this.dimension) / 2), 'flowers');
+		const images = await fetchImages(Math.round((this.dimension * this.dimension) / 2), this.gameTheme);
 
 		const container = document.createElement('div');
 		container.className = 'container';
