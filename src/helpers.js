@@ -15,8 +15,3 @@ export async function fetchImages(amount, theme) {
 
 	return images.results;
 }
-
-export const createElement = (parentQuery, child) => {
-	const root = document.querySelector(parentQuery);
-	root.innerHTML = child;
-};
