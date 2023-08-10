@@ -1,17 +1,24 @@
 import Card from './Card.js';
-import render from '../render.js';
-import { shuffle } from '../helpers.js';
+import { shuffle, fetchImages } from '../helpers.js';
 
 class Board {
 	dimension;
+	element;
 	constructor({ dimension }) {
 		this.dimension = dimension;
 	}
 
 	async initilize() {
-		const images = await this.fetchImages((this.dimension * this.dimension) / 2, 'flowers');
-		const cards = [];
+		const images = await fetchImages((this.dimension * this.dimension) / 2, 'flowers');
 
+		const container = document.createElement('div');
+		container.className = 'container';
+
+		this.initilizeElement();
+
+		container.appendChild(this.element);
+
+		const cards = [];
 		let i = 0;
 		for (let row = 0; row < this.dimension; row++) {
 			for (let column = 0; column < this.dimension; column++) {
@@ -19,26 +26,19 @@ class Board {
 				i++;
 			}
 		}
-		let html = `<div class="container"><div style="grid-template-columns: repeat(${this.dimension}, 100px); grid-template-rows: repeat(${this.dimension}, 100px)" class="board">`;
-
 		const shuffledCards = shuffle(cards);
-
 		shuffledCards.forEach(card => {
-			html += card.html();
+			this.element.appendChild(card.element);
 		});
 
-		html += '</div></div>';
-
-		render(html);
+		const root = document.getElementById('root');
+		root.appendChild(container);
 	}
 
-	async fetchImages(amount, theme) {
-		const response = await fetch(
-			`https://api.unsplash.com/search/photos?page=1&per_page=${amount}&query=${theme}&client_id=TCMqimfUi8HL3q-Eb4VUKTzXr7ZFjiAtfZcYwCvd3Qw`
-		);
-		const images = await response.json();
-
-		return images.results;
+	initilizeElement() {
+		this.element = document.createElement('div');
+		this.element.style = `grid-template-columns: repeat(${this.dimension}, 100px); grid-template-rows: repeat(${this.dimension}, 100px)`;
+		this.element.className = 'board';
 	}
 }
 
