@@ -20,6 +20,7 @@
 	height: 100%;
 	position: relative;
 	transform: rotateX(0deg) rotateY(0deg);
+	transition: 0.4s;
 	/* animation: spin 5s infinite linear; */
 }
 .card img {
@@ -62,7 +63,7 @@
 	transform: rotateX(0deg) translateZ(5px);
 }
 .back {
-	transform: rotateX(-180deg) translateZ(5px);
+	transform: rotateY(-180deg) translateZ(5px);
 }
 
 @keyframes spin {
@@ -72,4 +73,8 @@
 	to {
 		transform: rotateX(0deg) rotateY(360deg);
 	}
+}
+
+.flipped {
+	transform: rotateX(0deg) rotateY(180deg);
 }
