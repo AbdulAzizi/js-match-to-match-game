@@ -30,16 +30,12 @@ class Board {
 				});
 				card.element.addEventListener('click', event => {
 					if (!card.isFlipped && this.selectedPair.length < 2) {
-						card.isFlipped = !card.isFlipped;
-						if (card.isFlipped) event.currentTarget.classList.add('flipped');
-						else event.currentTarget.classList.remove('flipped');
+						card.flip();
 						this.selectedPair.push(card);
 						if (this.selectedPair.length === 2 && this.selectedPair[0].image !== this.selectedPair[1].image) {
 							setTimeout(() => {
-								this.selectedPair[0].element.classList.remove('flipped');
-								this.selectedPair[0].isFlipped = false;
-								this.selectedPair[1].element.classList.remove('flipped');
-								this.selectedPair[1].isFlipped = false;
+								this.selectedPair[0].flip();
+								this.selectedPair[1].flip();
 								this.selectedPair = [];
 							}, 500);
 						}

@@ -25,7 +25,12 @@ class Card {
 	}
 
 	flip() {
-		// flit the card
+		if (this.isFlipped) {
+			this.element.classList.remove('flipped');
+		} else {
+			this.element.classList.add('flipped');
+		}
+		this.isFlipped = !this.isFlipped;
 	}
 }
 export default Card;
