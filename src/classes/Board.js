@@ -12,7 +12,7 @@ class Board {
 	}
 
 	async initilize() {
-		const images = await fetchImages((this.dimension * this.dimension) / 2, 'flowers');
+		const images = await fetchImages(Math.round((this.dimension * this.dimension) / 2), 'flowers');
 
 		const container = document.createElement('div');
 		container.className = 'container';
