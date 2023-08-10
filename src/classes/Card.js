@@ -11,11 +11,7 @@ class Card {
 	initializeElement() {
 		this.element = document.createElement('div');
 		this.element.className = 'card';
-		this.element.onclick = function () {
-			this.isFlipped = !this.isFlipped;
-			if (this.isFlipped) this.classList.add('flipped');
-			else this.classList.remove('flipped');
-		};
+
 		this.element.innerHTML = `
 			<div class="face front"></div>
 			<div class="face back">
