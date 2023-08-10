@@ -37,7 +37,7 @@ class Board {
 								this.selectedPair[0].flip();
 								this.selectedPair[1].flip();
 								this.selectedPair = [];
-							}, 500);
+							}, 400);
 						}
 						if (this.selectedPair.length === 2 && this.selectedPair[0].image === this.selectedPair[1].image) {
 							this.selectedPair = [];
